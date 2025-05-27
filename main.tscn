@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0qeolc5er5sw"]
+
+[ext_resource type="PackedScene" uid="uid://bt0643fqv72gf" path="res://world.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bjn75toch688f" path="res://mc.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://wmo0e34ehdn5" path="res://spawner.tscn" id="3_lquwl"]
+
+[node name="main" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_h2yge")]
+
+[node name="Wizard" parent="." instance=ExtResource("2_1bvp3")]
+
+[node name="Spawner" parent="." instance=ExtResource("3_lquwl")]

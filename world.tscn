@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt0643fqv72gf"]
+
+[ext_resource type="Texture2D" uid="uid://bulnbqkga5nv4" path="res://Textures/dirt_full_new.png" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://d3ajfk7j3qi3n" path="res://wizard.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://wmo0e34ehdn5" path="res://spawner.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://837gj3ooqnuu" path="res://health_bar.tscn" id="4_aqk2v"]
+
+[node name="World" type="Node2D"]
+
+[node name="Landscape" type="Sprite2D" parent="."]
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(-58, 0)
+texture = ExtResource("1_f3sb7")
+region_enabled = true
+region_rect = Rect2(0, 0, 3000, 3000)
+
+[node name="Wizard" parent="." instance=ExtResource("2_fj7yv")]
+position = Vector2(-1, -1)
+
+[node name="Spawner" parent="." instance=ExtResource("3_tlwt5")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 40.0
+
+[node name="HealthBar" parent="CanvasLayer/HealthUI" instance=ExtResource("4_aqk2v")]
+layout_mode = 0
+anchors_preset = 0

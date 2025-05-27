@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2g21tl4bbxhq"]
+
+[ext_resource type="Script" uid="uid://c7xc03tamk6tj" path="res://health_ui.gd" id="1_iy3an"]
+[ext_resource type="Script" uid="uid://ctcbj2aeyi368" path="res://health_bar.gd" id="2_t8hjw"]
+
+[node name="HealthUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_iy3an")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 380.0
+offset_top = 10.0
+offset_right = 580.0
+offset_bottom = 40.0
+script = ExtResource("2_t8hjw")
