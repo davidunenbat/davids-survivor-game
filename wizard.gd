@@ -5,17 +5,7 @@ var current_health := max_health
 @onready var health_bar = $HealthBar
 @export var movement_speed = 100
 var hp = 100
-#Attacks
-var ice = preload("res://attack.tscn")
 
-#AttackNodes
-@onready var iceTimer = get_node("%IceTimer") #reload
-@onready var iceAttackTimer = get_node("%IceAttackTimer")
-
-var ice_ammo = 0
-var ice_baseammo = 1
-var ice_attackspeed = 1.5
-var enemy_close = []
 
 
 #player movement
@@ -40,6 +30,20 @@ func _ready():
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 	
+func _on_victory_timer_timeout() -> void:
+	$CanvasLayer/VictoryScreen.visible = true
+#tutorial code
+#Attacks
+var ice = preload("res://attack.tscn")
+
+#AttackNodes
+@onready var iceTimer = get_node("%IceTimer") #reload
+@onready var iceAttackTimer = get_node("%IceAttackTimer")
+
+var ice_ammo = 0
+var ice_baseammo = 1
+var ice_attackspeed = 1.5
+var enemy_close = []
 #attack logic
 func attack():
 	iceTimer.wait_time = ice_attackspeed
@@ -85,7 +89,3 @@ func _on_enemy_detection_area_body_entered(body: Node2D) -> void:
 
 func _on_enemy_detection_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	enemy_close.erase(body)
-
-
-func _on_victory_timer_timeout() -> void:
-	$CanvasLayer/VictoryScreen.visible = true

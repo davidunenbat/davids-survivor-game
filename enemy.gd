@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 
-#taking damage
+#tutorial
 func _on_hurt_box_hurt(damage: Variant) -> void:
 	hp -= damage
 	if hp <= 0:

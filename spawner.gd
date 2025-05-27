@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var world_root = get_node("/root/World")
 var enemy_scene := preload("res://enemy.tscn")
 var spawn_locs = []

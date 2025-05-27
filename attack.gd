@@ -1,5 +1,5 @@
 extends Area2D
-
+#tutorial code
 var hp = 1
 var speed = 100
 var damage = 5

@@ -1,5 +1,5 @@
 extends Area2D
-
+#tutorial code
 @export_enum("Cooldown", "HitOnce", "DisableHitBox") var HurtBoxType = 0
 
 @export var hp = 10
@@ -30,6 +30,7 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_disable_timer_timeout() -> void:
 	collision.call_deferred("set", "disabled",false)
 
+#My code
 func _on_body_entered(body):
 	if body.name == "Wizard":
 		body.take_damage(10)

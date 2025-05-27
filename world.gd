@@ -3,9 +3,9 @@ extends Node2D
 @onready var countdown_timer = $CountdownTimer
 @onready var countdown_label = $CanvasLayer/CountDownLabel
 @onready var victory_timer = $VictoryTimer
-@onready var victory_screen = $CanvasLayer/VictoryScreen  # if you have one
+@onready var victory_screen = $CanvasLayer/VictoryScreen
 
-var time_left := 45  # total seconds until victory
+var time_left := 45
 
 func _ready():
 	update_timer_label()
@@ -22,7 +22,6 @@ func _process(_delta):
 	update_timer_label()
 
 func update_timer_label():
-	#var time_left = int(victory_timer.time_left)
 	countdown_label.text = "Time Left: %s" % time_left
 
 func _on_countdown_timer_timeout():
@@ -31,11 +30,8 @@ func _on_countdown_timer_timeout():
 	
 	if time_left <= 0:
 		victory_screen.visible = true
-		#show_victory_screen()
 
-#func show_victory_screen():
-	#$CanvasLayer/VictoryScreen.visible = true
+
 
 func _on_victory_timer_timeout():
 	victory_screen.visible = true
-	#show_victory_screen()
