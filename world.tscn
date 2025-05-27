@@ -1,22 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt0643fqv72gf"]
+[gd_scene load_steps=6 format=3 uid="uid://bt0643fqv72gf"]
 
+[ext_resource type="Script" uid="uid://bq6gm05wv3cr7" path="res://world.gd" id="1_036b0"]
 [ext_resource type="Texture2D" uid="uid://bulnbqkga5nv4" path="res://Textures/dirt_full_new.png" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://d3ajfk7j3qi3n" path="res://wizard.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://wmo0e34ehdn5" path="res://spawner.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://837gj3ooqnuu" path="res://health_bar.tscn" id="4_aqk2v"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_036b0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VictoryScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VictoryScreen"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "VICTORY!"
+
+[node name="CountDownLabel" type="Label" parent="CanvasLayer"]
+offset_left = -37.0
+offset_top = -106.0
+offset_right = 293.0
+offset_bottom = -19.0
+rotation = -0.0113182
+text = "Time Left: 45"
 
 [node name="Landscape" type="Sprite2D" parent="."]
 texture_filter = 2
 texture_repeat = 2
-position = Vector2(-58, 0)
+position = Vector2(1, 1)
 texture = ExtResource("1_f3sb7")
 region_enabled = true
 region_rect = Rect2(0, 0, 3000, 3000)
 
 [node name="Wizard" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(-1, -1)
+position = Vector2(-1, 1)
 
 [node name="HealthBar" parent="Wizard" instance=ExtResource("4_aqk2v")]
 anchors_preset = 0
@@ -24,22 +49,20 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 279.0
-offset_top = 1.0
-offset_right = 319.0
-offset_bottom = 41.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Wizard"]
-
-[node name="HealthUI" type="Control" parent="Wizard/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -239.0
-offset_top = 8.0
-offset_right = -39.0
-offset_bottom = 38.0
-grow_horizontal = 0
+offset_left = -149.0
+offset_top = -178.0
+offset_right = 155.0
+offset_bottom = -149.0
 
 [node name="Spawner" parent="." instance=ExtResource("3_tlwt5")]
+
+[node name="VictoryTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+autostart = true
+
+[node name="CountdownTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_victory_timer_timeout"]
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]

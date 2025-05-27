@@ -25,11 +25,11 @@ func _on_area_entered(area: Area2D) -> void:
 			emit_signal("hurt", damage)
 			#enemy
 			if area.has_method("enemy_hit"):
-				area.enemy_hit(1)
+				area.enemy_hit(10)
 
 func _on_disable_timer_timeout() -> void:
 	collision.call_deferred("set", "disabled",false)
 
 func _on_body_entered(body):
 	if body.name == "Wizard":
-		body.take_damage(1)
+		body.take_damage(10)

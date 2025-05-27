@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var max_health := 100
 var current_health := max_health
-#@onready var health_bar = get_node("/root/World/CanvasLayer/HealthUI/HealthBar")
 @onready var health_bar = $HealthBar
 @export var movement_speed = 100
 var hp = 100
@@ -25,29 +24,19 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * movement_speed	
 	move_and_slide()
 
-#func initialize():
-	#print("Initializing health bar")
-	#health_bar.max_value = max_health
-	#health_bar.value = current_health
-	
-func take_damage(amount: int = 1):
+func take_damage(amount: int = 10):
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
-	print("hello")
-	#update_health_ui()
+	if current_health <= 0:
+		die()
 
-func update_health_ui():
-	var health_bar = get_tree().get_root().get_node("/root/World/CanvasLayer/HealthUI/HealthBar")
-	health_bar.update_health(current_health, max_health)
 func die():
-	queue_free()
 	print("Player died")
+	get_tree().reload_current_scene()
 	
 	
 func _ready():
 	attack()
-	print("Wizard ready")
-	#initialize()
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 	
@@ -60,7 +49,7 @@ func attack():
 func _on_hurt_box_hurt(damage: Variant) -> void:
 	hp -= damage
 	print(hp)
-	take_damage(1)
+	take_damage(10)
 
 #when attack fires
 func _on_ice_attack_timer_timeout() -> void:
@@ -96,3 +85,7 @@ func _on_enemy_detection_area_body_entered(body: Node2D) -> void:
 
 func _on_enemy_detection_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	enemy_close.erase(body)
+
+
+func _on_victory_timer_timeout() -> void:
+	$CanvasLayer/VictoryScreen.visible = true
