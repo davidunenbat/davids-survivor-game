@@ -7,6 +7,7 @@
 [node name="main" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("1_h2yge")]
+position = Vector2(33, -2)
 
 [node name="Wizard" parent="." instance=ExtResource("2_1bvp3")]
 

@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3ajfk7j3qi3n"]
+[gd_scene load_steps=8 format=3 uid="uid://d3ajfk7j3qi3n"]
 
 [ext_resource type="Texture2D" uid="uid://dee7y88td6tok" path="res://Textures/Player/player_sprite.png" id="1_0isxx"]
 [ext_resource type="Script" uid="uid://cw64n1r1hnc7h" path="res://wizard.gd" id="1_34mad"]
 [ext_resource type="Script" uid="uid://brfbrjac60b2d" path="res://sprite_2d.gd" id="3_xo1iy"]
 [ext_resource type="PackedScene" uid="uid://d1d1l1l6jrjxu" path="res://hurt_box.tscn" id="4_xo1iy"]
-[ext_resource type="PackedScene" uid="uid://b2g21tl4bbxhq" path="res://health_ui.tscn" id="5_rsvjg"]
-[ext_resource type="PackedScene" uid="uid://837gj3ooqnuu" path="res://health_bar.tscn" id="6_74p71"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34mad"]
 radius = 5.0
@@ -57,19 +55,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
 shape = SubResource("CircleShape2D_xo1iy")
-
-[node name="HealthUI" parent="." instance=ExtResource("5_rsvjg")]
-
-[node name="HealthBar2" parent="HealthUI" instance=ExtResource("6_74p71")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_bottom = 40.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceTimer" to="." method="_on_ice_timer_timeout"]

@@ -32,4 +32,4 @@ func _on_disable_timer_timeout() -> void:
 
 func _on_body_entered(body):
 	if body.name == "Wizard":
-		body.take_damage()
+		body.take_damage(1)
